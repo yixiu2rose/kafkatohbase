@@ -62,9 +62,9 @@ public class HBaseComTest {
             String family = "cus";
 
             Put put = new Put("sadsadsd".getBytes());
-			put.addColumn(family.getBytes(), "offset".getBytes(), "dsfdfsd".getBytes());
-			put.addColumn(family.getBytes(), "value".getBytes(), "sdfdfdf".getBytes());
-			table.put(put);
+            put.addColumn(family.getBytes(), "offset".getBytes(), "dsfdfsd".getBytes());
+            put.addColumn(family.getBytes(), "value".getBytes(), "sdfdfdf".getBytes());
+            table.put(put);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -72,13 +72,16 @@ public class HBaseComTest {
         }
         return rowKey;
     }
+
     public static void main(String[] args) throws IOException {
         log.warn("============hbase test============");
         Connection conn = HBaseComTest.getConnection();
         insertDataMe(conn);
-        /*HBaseComTest.createTable(conn);
-        String rowKey = HBaseComTest.insertData(conn);
-        HBaseComTest.getData(conn, rowKey);*/
+        /*
+         * HBaseComTest.createTable(conn);
+         * String rowKey = HBaseComTest.insertData(conn);
+         * HBaseComTest.getData(conn, rowKey);
+         */
         // String rowKey = "a3de7183-561a-40fa-9418-1426def8f78a";
         // HBaseComTest.deleteData(conn, rowKey);
         // HBaseComTest.scanTable(conn);

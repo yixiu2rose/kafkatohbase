@@ -4,20 +4,17 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * 
  * @author WeiLiPeng
- *
  * @date 2017年11月30日
  */
 public class ConfigurationManager {
-	
+
     private static Properties pro = new Properties();
 
     static {
         try {
-            InputStream inputStream = ConfigurationManager.class
-                    .getClassLoader()
-                    .getResourceAsStream("config.properties");
+            InputStream inputStream =
+                    ConfigurationManager.class.getClassLoader().getResourceAsStream("config.properties");
             pro.load(inputStream);
         } catch (Exception e) {
 

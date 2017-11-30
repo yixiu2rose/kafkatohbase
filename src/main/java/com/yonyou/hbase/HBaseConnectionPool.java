@@ -65,7 +65,7 @@ public final class HBaseConnectionPool {
                     Configuration conf = HBaseConfiguration.create();
                     conf.set("hbase.zookeeper.quorum", ConfigurationManager.getProperty("hbase.zookeeper.quorum"));
                     conf.set("hbase.zookeeper.property.clientPort",
-                    		ConfigurationManager.getProperty("hbase.zookeeper.property.clientPort"));
+                            ConfigurationManager.getProperty("hbase.zookeeper.property.clientPort"));
                     conf.set("zookeeper.znode.parent", ConfigurationManager.getProperty("zookeeper.znode.parent"));
                     int minSize = conf.getInt(MIN_POOL_SIZE, 1);
                     int maxSize = conf.getInt(MAX_POOL_SIZE, 1);
