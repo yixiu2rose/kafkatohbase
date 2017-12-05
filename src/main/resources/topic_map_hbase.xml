@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bizcodes>
-	<bizcode code="YG10001" hbaseTableName="dtunnel_YG"  family="yg_message" topicName="dtunnel_YG" />
-	<bizcode code="YG10002" hbaseTableName="dtunnel_YG"  family="yg_message" topicName="dtunnel_YG" />
-</bizcodes>
+<topics>
+	<topic name="dtunnel_YG" group="dtunnel.default" threadNum="2" >
+		<bizcode code="YG10001" hbaseTableName="dtunnel_YG"  family="yg_message"  />
+		<bizcode code="YG10002" hbaseTableName="dtunnel_YG"  family="yg_message"  />
+	</topic>
+	<topic name="dtunnel_CS" group="dtunnel.sb" threadNum="2" >
+		<bizcode code="YG10001" hbaseTableName="dtunnel_YG"  family="yg_message"  />
+		<bizcode code="YG10002" hbaseTableName="dtunnel_YG"  family="yg_message"  />
+	</topic>
+</topics>

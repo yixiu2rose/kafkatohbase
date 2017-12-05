@@ -16,6 +16,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Topic {
 
 	String name;
+	
+	String group;
+	
+	int threadNum;
 
 	@XmlElement(name = "bizcode")  
 	List<Bizcode> bizcodes;
@@ -38,9 +42,25 @@ public class Topic {
 	public void setBizcodes(List<Bizcode> bizcodes) {
 		this.bizcodes = bizcodes;
 	}
-	
-	
+
+	public String getGroup() {
+		return group;
+	}
+
+	@XmlAttribute
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
+	public int getThreadNum() {
+		return threadNum;
+	}
+
+	@XmlAttribute
+	public void setThreadNum(int threadNum) {
+		this.threadNum = threadNum;
+	}
 
 	
-
+	
 }

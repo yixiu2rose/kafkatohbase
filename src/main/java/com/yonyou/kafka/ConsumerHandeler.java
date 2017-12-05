@@ -2,9 +2,8 @@ package com.yonyou.kafka;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,7 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.yonyou.conf.bean.Bizcode;
-import com.yonyou.conf.bean.Bizcodes;
+import com.yonyou.conf.bean.Topic;
+import com.yonyou.conf.bean.Topics;
 
 /* 
  * @author WeiLiPeng
@@ -26,33 +26,43 @@ public class ConsumerHandeler {
 	private static final Logger log = LoggerFactory.getLogger(ConsumerHandeler.class.getName());
 //	private static final Logger log = LoggerFactory.getLogger(ConsumerHandeler.class);
 
-	public static Map<String, Bizcode> gainCodeMapInfo() {
-		Map<String, Bizcode> map = new HashMap<String, Bizcode>();
+	
+	public static Topics gainTopics() {
 		InputStream file = ConsumerHandeler.class.getClassLoader().getResourceAsStream("topic_map_hbase.xml");
-		JAXBContext jaxbContext;
+		JAXBContext jaxbContext = null;
+		Topics topics = null;
 		try {
-			jaxbContext = JAXBContext.newInstance(Bizcodes.class);
+			jaxbContext = JAXBContext.newInstance(Topics.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			Bizcodes bizcodes = (Bizcodes) jaxbUnmarshaller.unmarshal(file);
-			for (Bizcode biz : bizcodes.getBizcodes()) {
-				String name = biz.getTopicName();
-				String code = biz.getCode();
-				log.info("=============topic name:" + name + "   family:" + biz.getFamily() + "  tableName:"
-						+ biz.getHbaseTableName() + "  bizcode:" + code);
-				map.put(code, biz);
+			topics = (Topics) jaxbUnmarshaller.unmarshal(file);
+			List<Topic> topicList = topics.getTopicList();
+			for(Topic topic :topicList) {
+				List<Bizcode> bizcodes = topic.getBizcodes();
+				System.out.println("topic name:"+topic.getName()+" group:"+topic.getGroup()+"  thread num:"+topic.getThreadNum());
+				for(Bizcode biz:bizcodes) {
+					System.out.println("code:"+biz.getCode()+"  table:"+biz.getHbaseTableName());
+				}
 			}
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
-		return map;
-	}
-
-	public static Set<String> gainTopics(Map<String, Bizcode> bizeCodeInfo) {
-		Set<String> topics = new HashSet<String>();
-		for (Map.Entry<String, Bizcode> entry : bizeCodeInfo.entrySet()) {
-			Bizcode biz = entry.getValue();
-			topics.add(biz.getTopicName());
-		}
 		return topics;
 	}
+	
+	public static Map<String,Bizcode> gainTopicBiz(String topicName,Topics topics) {
+		List<Topic> topicList = topics.getTopicList();
+		Map<String,Bizcode> res = new HashMap<String,Bizcode>();
+		for(Topic top : topicList) {
+			String name = top.getName();
+			if(topicName.equals(name)) {
+				List<Bizcode> bizcodes = top.getBizcodes();
+				for(Bizcode biz :bizcodes) {
+					res.put(biz.getCode(), biz);
+				}
+			}
+		}
+		return res;
+	}
+	
+	
 }

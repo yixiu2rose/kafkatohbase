@@ -15,18 +15,18 @@ public class Bizcode {
 
 	String family;
 	
-	String topicName;
+//	String topicName;
 	
 	
 
-	public String getTopicName() {
+	/*public String getTopicName() {
 		return topicName;
 	}
-
+	
 	@XmlAttribute
 	public void setTopicName(String topicName) {
 		this.topicName = topicName;
-	}
+	}*/
 
 	public String getCode() {
 		return code;

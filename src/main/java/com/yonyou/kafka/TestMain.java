@@ -1,12 +1,14 @@
 package com.yonyou.kafka;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.yonyou.conf.ConfigurationManager;
 import com.yonyou.conf.bean.Bizcode;
+import com.yonyou.conf.bean.Topic;
+import com.yonyou.conf.bean.Topics;
 
 /* 
  * @author WeiLiPeng
@@ -29,13 +31,19 @@ public class TestMain {
 
 		// File file = new File("D:/topic_map_hbase.xml");
 
-		Map<String, Bizcode> gainCodeMapInfo = ConsumerHandeler.gainCodeMapInfo();
+		/*Map<String, Bizcode> gainCodeMapInfo = ConsumerHandeler.gainCodeMapInfo();
 
-		Set<String> gainTopics = ConsumerHandeler.gainTopics(gainCodeMapInfo);
-
-		for (String topic : gainTopics) {
-			Runnable worker = new DtunnelConsumer(topic, gainCodeMapInfo);
-			executor.execute(worker);
+		Set<String> gainTopics = ConsumerHandeler.gainTopics(gainCodeMapInfo);*/
+		
+		Topics topics = ConsumerHandeler.gainTopics();
+		List<Topic> topicList = topics.getTopicList();
+		for (Topic topic : topicList) {
+			int threadNum = topic.getThreadNum();
+			 Map<String, Bizcode> gainTopicBiz = ConsumerHandeler.gainTopicBiz(topic.getName(), topics);
+			for(int i=0;i<threadNum;i++) {
+				Runnable worker = new DtunnelConsumer(topic.getName(),gainTopicBiz);
+				executor.execute(worker);
+			}
 		}
 
 		/*
