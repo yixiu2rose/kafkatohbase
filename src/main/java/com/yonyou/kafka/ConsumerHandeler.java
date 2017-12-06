@@ -16,9 +16,8 @@ import com.yonyou.conf.bean.Bizcode;
 import com.yonyou.conf.bean.Topic;
 import com.yonyou.conf.bean.Topics;
 
-/* 
+/*
  * @author WeiLiPeng
- *
  * @date 2017年11月30日
  */
 public class ConsumerHandeler {
@@ -65,4 +64,5 @@ public class ConsumerHandeler {
 	}
 	
 	
+
 }

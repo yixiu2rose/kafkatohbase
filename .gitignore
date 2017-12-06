@@ -1,1 +1,15 @@
+<<<<<<< HEAD
 /target/
+=======
+.classpath
+.project
+.settings
+.idea/
+.iml/
+.DS_Store
+dependency-reduced-pom.xml
+target
+bin/
+derby/
+logs/
+>>>>>>> 792ca16dc91ac963c4a08dc21453c2e9a57192ee

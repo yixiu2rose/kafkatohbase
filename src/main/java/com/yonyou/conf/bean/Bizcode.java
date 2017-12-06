@@ -2,16 +2,15 @@ package com.yonyou.conf.bean;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-/* 
+/*
  * @author WeiLiPeng
- *
  * @date 2017年11月30日
  */
 public class Bizcode {
 
-	String code;
+    String code;
 
-	String hbaseTableName;
+    String hbaseTableName;
 
 	String family;
 	
@@ -28,30 +27,30 @@ public class Bizcode {
 		this.topicName = topicName;
 	}*/
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	@XmlAttribute
-	public void setCode(String code) {
-		this.code = code;
-	}
+    @XmlAttribute
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getHbaseTableName() {
-		return hbaseTableName;
-	}
+    public String getHbaseTableName() {
+        return hbaseTableName;
+    }
 
-	@XmlAttribute
-	public void setHbaseTableName(String hbaseTableName) {
-		this.hbaseTableName = hbaseTableName;
-	}
+    @XmlAttribute
+    public void setHbaseTableName(String hbaseTableName) {
+        this.hbaseTableName = hbaseTableName;
+    }
 
-	public String getFamily() {
-		return family;
-	}
+    public String getFamily() {
+        return family;
+    }
 
-	@XmlAttribute
-	public void setFamily(String family) {
-		this.family = family;
-	}
+    @XmlAttribute
+    public void setFamily(String family) {
+        this.family = family;
+    }
 }
